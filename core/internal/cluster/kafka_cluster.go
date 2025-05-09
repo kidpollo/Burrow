@@ -227,6 +227,7 @@ func (module *KafkaCluster) generateOffsetRequests(client helpers.SaramaClient) 
 			}
 			if _, ok := requests[broker.ID()]; !ok {
 				requests[broker.ID()] = &sarama.OffsetRequest{}
+				requests[broker.ID()].Version = 4
 			}
 			brokers[broker.ID()] = broker
 			requests[broker.ID()].AddBlock(topic, partitionID, sarama.OffsetNewest, 1)
